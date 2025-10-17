@@ -1,0 +1,8 @@
+         |00| SET R0 , 0x03
+         |02| SET R1 , 0x00
+         |04| MOV R2 , R0
+   sumar |06| ADD R1 , R2
+         |08| DEC R2
+         |0a| JZ terminar
+         |0c| JMP sumar
+terminar |0e| JMP terminar

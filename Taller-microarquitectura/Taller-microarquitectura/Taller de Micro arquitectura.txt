@@ -1,0 +1,61 @@
+Taller de Micro arquitectura 
+
+1.
+a) Tamaño Memoria =  256 bytes → 128 instrucciones o DW (2 bytes cada una)
+b) Tamaño Program Counter =  8 
+	Logaritmo en base dos a la cantidad de instrucciones a llamar 
+c) Internal Register = Se encuentra en el decodificador y tiene Tamaño de 16 bits­. Dos palabras de memoria.
+
+2
+a) en PC (contador de programa) inc Incrementa el valor actual de uno en uno.
+b) en ALU (Unidad Aritmético Lógica) opW Indica si se deben escribir los flags
+c) en ControlUnit (Unidad de Control) los saltos condicionales se resuelven sobreescribiendo el valor del micro PC. selectores de multiplexores: el de la derecha indicando si se sobreescribe por una nueva instrucci´on o flags; y el de la izquierda indicando si se
+incrementa el micro PC en 1
+(flag habilitado) o 2 (flag en
+cuesti´on deshabilitado)
+COMPLETAR
+d) microOrgaSmall (Datapath) Habilita la entrada al bus de un valor inmediato. El indice del registro a leer y escribir lo indica el decodificador.
+PREGUNTAR DESPUES
+
+3
+a) Primero hace un JMP hacia la etiqueta "seguir". En seguir primero settea en el registro R0, el espacio de memoria en 0xFF, luego hace lo mismo en el registro R1, copiando el espacio de memoria 0x11.
+
+Despues va a la etiqueta siguente donde suma R0 y R1 y guarda el valor del resultado en R0. 
+En JC, si hubo carry en la suma anterior vuelve a ejecutar la etiqueta siguente.
+
+Por ultimo define un ciclo de halt que dentro hace otro salto hacia halt otra vez.
+
+b) Cada instruccion en la memoria ocupa 16 bits o 2 bytes. 
+En logisim cada espacio de memoria guarda: 8 bits -> 2 lugares de 4 bits cada uno
+
+4.
+a) Se corta:
+- microOrgaSmall: no hay jumps pues nunca llegan los flags a la CU
+- registers: no se puede leer de los registros
+- PC: no podemos hacer jumps
+- ALU: se rompe
+- memory: no podes cambiar la direccion de memoria
+- decode: no podes leer el valor inmediato, por ende no podes hacer jump y usar la memoria
+- CU: solo microinstrucciones secuenciales, sin salto
+
+b) 
+
+5. 
+
+SET R0, 0x03
+SET R1, 0x00
+MOV R2, R0
+
+sumar: 
+ADD R1, R2
+DEC R2 
+JZ terminar
+JMP sumar
+
+terminar: 
+JMP terminar
+
+
+
+
+

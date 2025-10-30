@@ -1,0 +1,95 @@
+1. arquitectura
+riscv -> Hardvard / podría ser von neumman
+Memoria esta separada entre memoria de datos y memoria de instrucciones 
+
+orgasmall -> Von Neumman 
+Memoria de datos y de instrucciones en el mismo lugar
+
+
+
+2. 
+risc v -> instrucciones habilitan 3 registros, no hace falta guardar el valor en uno de los operandos
+instrucciones de 4 bytes
+
+
+orgasmall -> solo admite 2 registros por instrucción 
+instrucciones son de 2 bytes
+
+3. 
+
+Como se hace una lectura del PC ->
+Como orgasmall tiene mas palabras(dos por instruccion) tarda mas en acceder a la memoria
+Risc V es mas rapido porque usa solo una palabra
+ 
+
+4. 
+risc v -> direccionable por bytes, cada byte tiene una direccion unica, las palabras en la memoria son de 4 bytes 
+
+orgasmall -> las palabras en la memoria son de 1 byte
+
+
+5. Decodifica una funcion tipo R en RISC - V 
+
+7 bits para la funcion 7
+5 bits para rs2 el segundo operando
+5 bits para rs1 el primer operando 
+3 bits para la funcion 3
+5 bits para el 2do registro rd donde se guarda el resultado
+7 bits OpCode -> Al ser tipo R comparten el mismo opcode que es 0110011
+
+32 bits !
+
+Son 32 registros por eso queremos 5 bits para identificarlos
+
+6. 
+No compila
+Que pasa cuando el inmediato tiene mas de 12 bits, ADDI t0, t1, 0xAFF3
+No se logra cargar en su totalidad -> no hay mas espacio en mi instruccion para cargar el inmediato.
+Para hacer la operacion primero cargamos la mitad alta(load uper inmidiate) y el resto serían ceros y despues con un addi normal para lo que quedaría
+
+7. 
+En risc-v se puede hacer sumando el valor que quiero poner mas cero y guardarlo en mi registro. 
+En orgasmall no se puede porque solo me permite usar dos operandos, no como risc-v que son 3
+Pero existe la pseudo instruccion
+
+8.
+Instrucciones de salto condional e incondicional 
+
+Orgasmall 
+	El salto condicional y incondicional se estructura de la misma manera
+	Es una instruccion de tipo C 
+	5 bits de opcode
+	3 bits nulos ->que se suelen usar para registros pero aca no 
+	8 bits de direccion de memoria 
+	
+Se calcula con los flags
+	
+Risc-V 
+	jal  es jump and link 
+	Tipo J -> incondicional 
+	solo un inmediato y un registro de destino
+	Tipo B -> condicional 
+	2 inmediatos
+	2 registros 
+	1 funcion que compara los registros 
+
+el resultado de la funcion inmediata
+	
+9. Saltos condicionales son absolutos o relativos 
+
+En riscv 
+	Los saltos son relativos porque le sumo directamente el inmediato 
+	Me paro desde donde estoy y voy hacia arriba o abajo
+	
+	Por el tamaño del inmediato, no podría ser absoluto
+
+En orgasmall 
+	Los saltos son absolutos porque le asigno directamente un numero 
+	Directamente linkeo la linea donde quiero ir 
+	
+
+10. 
+	Mas flexibilidad 
+	
+	
+
